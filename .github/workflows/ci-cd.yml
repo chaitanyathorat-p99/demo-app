@@ -82,7 +82,11 @@ jobs:
             cd /home/ec2-user
 
             rm -rf demo-app
-
+            echo "Installing git if not present..."
+            if ! command -v git &> /dev/null
+            then
+            sudo yum install git -y || sudo dnf install git -y || sudo apt install git -y
+            fi
             echo "Cloning repo..."
             GIT_ASKPASS=true git clone https://github.com/chaitanyathorat-p99/demo-app.git
 
